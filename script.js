@@ -254,6 +254,8 @@ function getRole(){
   var code = document.getElementById("gameCode").value;
   var count = document.getElementById("playerCount").value;
   var number = document.getElementById("playerNumber").value;
+  document.getElementById("playerCount").readOnly = true;
+  document.getElementById("playerNumber").readOnly = true;
   var arr = ["the President","the Bomber"];
   var gamblerCheck = false;
   if(count % 2 == 1){
