@@ -254,7 +254,7 @@ function getRole(){
   var code = document.getElementById("gameCode").value;
   var count = document.getElementById("playerCount").value;
   var number = document.getElementById("playerNumber").value;
-  if(document.getElementById("buryCard").checked = true){count++;console.log("test")}
+  if(document.getElementById("buryCard").checked){count++;console.log("test")}
   document.getElementById("playerCount").readOnly = true;
   document.getElementById("playerNumber").readOnly = true;
   var arr = ["the President","the Bomber"];
@@ -298,6 +298,7 @@ function getRole(){
   var lab = document.getElementById("textLabel");
   var roleName = roleList[number-1]
   lab.textContent = ('You are ' + roleName);
+  console.log(roleName);
   switch(roleName){
 	case "the President":
 		lab.color="Blue";
@@ -316,21 +317,12 @@ function getRole(){
 		roleDesc.textContent = "You win by getting the President and Bomber in the same room";
 		break;
 	case "the Gambler":
-		lab.color="Black";
+		lab.color="Gray";
 		roleDesc.textContent = "You win by guessing which team wins at the end of the game";
-		
+		break;
 	default:
 		lab.color="Black";
 		roleDesc.textContent = " ";
 		break;
-  }
-  if(roleName == "the President" || roleName == "on Blue Team"){
-    lab.color="Blue";
-  }
-  else if(roleName == "the Bomber" || roleName == "on Red Team"){
-    lab.color="Red";
-  }
-  else{
-    lab.color="Black";
   }
 }
