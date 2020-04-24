@@ -289,10 +289,13 @@ function hideRole(){
 }
 
 function getRole(){
-	document.getElementById("showRole").style=" ";
-	document.getElementById("showRole").innerHTML = "Hide Role";
+	
   var code = document.getElementById("gameCode").value;
   var count = document.getElementById("playerCount").value;
+  if(count > 10){
+	document.getElementById("showRole").style=" ";
+	document.getElementById("showRole").innerHTML = "Hide Role";
+  }
   var number = document.getElementById("playerNumber").value;
   if(document.getElementById("buryCard").checked){count++;}
   document.getElementById("playerCount").readOnly = true;
@@ -310,7 +313,7 @@ function getRole(){
   else{
     countCount = ((count-2)/2);
   }
-  for(let step = 0; step < countCount; step++){
+  for(step = 0; step < countCount; step++){
     arr.push("on Red Team");
     arr.push("on Blue Team");
   }
