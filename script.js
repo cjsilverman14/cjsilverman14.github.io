@@ -250,11 +250,51 @@ if ((typeof module) == 'object' && module.exports) {
 );
 
 document.getElementById("roleBtn").addEventListener("click",getRole);
+document.getElementById("showRole").addEventListener("click",hideRole);
+function hideRole(){
+	var lab = document.getElementById("textLabel");
+	var lab2 = document.getElementById("roleDesc");
+	var lab3 = document.getElementById("align");
+	if(document.getElementById("showRole").innerHTML == "Hide Role"){
+		document.getElementById("showRole").innerHTML = "Show Role";
+		if(lab3.textContent == "Blue Team"){
+			lab.color = "#3db1d4";
+			lab2.color = "#3db1d4";
+		}
+		else if(lab3.textContent == "Red Team"){
+			lab.color = "#c75050";
+			lab2.color = "#c75050";
+		}
+		else{
+			lab.color = "#adadad";
+			lab2.color = "#adadad";
+		}
+	}
+	else{
+		document.getElementById("showRole").innerHTML = "Hide Role";
+		if(lab3.textContent == "Blue Team"){
+			lab.color = "Blue";
+			lab2.color = "Black";
+		}
+		else if(lab3.textContent == "Red Team"){
+			lab.color = "#212529";
+			lab2.color = "Black";
+		}
+		else{
+			lab.color = "Purple";
+			lab2.color = "Black";
+		}
+			
+	}
+}
+
 function getRole(){
+	document.getElementById("showRole").style=" ";
+	document.getElementById("showRole").innerHTML = "Hide Role";
   var code = document.getElementById("gameCode").value;
   var count = document.getElementById("playerCount").value;
   var number = document.getElementById("playerNumber").value;
-  if(document.getElementById("buryCard").checked){count++;console.log("test")}
+  if(document.getElementById("buryCard").checked){count++;}
   document.getElementById("playerCount").readOnly = true;
   document.getElementById("playerNumber").readOnly = true;
   var arr = ["the President","the Bomber"];
@@ -282,10 +322,8 @@ function getRole(){
   }
   var iter = 0;
   while(iter != count){
-    console.log(boolCheck);
     var nextSlot = Math.round(myrng()*count)
     if(nextSlot == count){nextSlot = 0;}
-    console.log(nextSlot);
 
     if(boolCheck[nextSlot] == true){continue;}
     else{
@@ -294,31 +332,40 @@ function getRole(){
       iter++;
     }
   }
-  console.log(roleList);
   var lab = document.getElementById("textLabel");
+  var alignment = document.getElementById("align");
   var roleName = roleList[number-1]
   lab.textContent = ('You are ' + roleName);
-  console.log(roleName);
   switch(roleName){
 	case "the President":
 		lab.color="Blue";
 		roleDesc.textContent = "You win by ending up in a different room from the Bomber";
+		alignment.textContent = "Blue Team";
+		document.getElementById("background").style="background-color:#3db1d4";
 		break;
 	case "the Bomber":
-		lab.color="Red";
+		lab.color="Black";
 		roleDesc.textContent = "You win by ending up in the same room as the President";
+		document.getElementById("background").style="background-color:#C75050";
+		alignment.textContent = "Red Team";
 		break;
 	case "on Blue Team":
 		lab.color="Blue";
 		roleDesc.textContent = "You win by getting the President and Bomber in different rooms";
+		document.getElementById("background").style="background-color:#3db1d4";
+		alignment.textContent = "Blue Team";
 		break;
 	case "on Red Team":
-		lab.color="Red";
+		lab.color="Black";
 		roleDesc.textContent = "You win by getting the President and Bomber in the same room";
+		document.getElementById("background").style="background-color:#C75050";
+		alignment.textContent = "Red Team";
 		break;
 	case "the Gambler":
-		lab.color="Gray";
+		lab.color="Purple";
 		roleDesc.textContent = "You win by guessing which team wins at the end of the game";
+		document.getElementById("background").style="background-color:#adadad";
+		alignment.textContent = "Neutral";
 		break;
 	default:
 		lab.color="Black";
